@@ -1,0 +1,33 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// EXTENSION: Core user model for OAuth login and preferences
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  email         String?        @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  sessions      SleepSession[]
+}
+
+// EXTENSION: Sleep sessions linked to users for tracking & stats
+model SleepSession {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bedTime      DateTime
+  wakeTime     DateTime
+  durationMins Int
+  qualityScore Int?     // 1-10 scale
+  notes        String?
+  createdAt    DateTime @default(now())
+}

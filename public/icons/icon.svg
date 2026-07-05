@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0a0a14"/>
+    </radialGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <!-- Accent Gradient -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Maskable background -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+
+  <!-- Glowing outer circle representing clock face -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#312e81" stroke-width="6"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="url(#accentGrad)" stroke-width="4" opacity="0.3" filter="url(#glow)"/>
+
+  <!-- Crescent Moon in the center -->
+  <path d="M290 190 C220 190 180 230 180 300 C180 340 200 370 230 390 C180 380 150 330 150 280 C150 210 200 160 270 160 C290 160 310 170 320 180 C310 185 300 190 290 190 Z" 
+        fill="url(#accentGrad)" 
+        filter="url(#glow)"/>
+
+  <!-- Clock hands overlaying the moon subtly -->
+  <line x1="256" y1="256" x2="256" y2="180" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="256" y1="256" x2="310" y2="256" stroke="#c084fc" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+  
+  <!-- Clock center pin -->
+  <circle cx="256" cy="256" r="10" fill="#ffffff"/>
+</svg>
